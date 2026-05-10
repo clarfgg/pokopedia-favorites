@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import json; data=json.load\\(open\\('items.json'\\)\\); print\\(json.dumps\\(data[:2], indent=2\\)\\)\")",
+      "Bash(.venv/bin/python scrape.py)"
+    ]
+  }
+}

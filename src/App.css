@@ -1,0 +1,274 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --green-50:  #f2faf2;
+  --green-100: #dff0dc;
+  --green-200: #bde0b8;
+  --green-500: #4caf50;
+  --green-700: #2e7d32;
+  --green-800: #1b5e20;
+  --text:      #1a2e1a;
+  --text-muted:#5a7a5a;
+  --border:    #c8e0c6;
+  --white:     #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--green-50);
+  color: var(--text);
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem 4rem;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  background: var(--green-50);
+  padding: 1rem 0 0.75rem;
+  z-index: 10;
+  border-bottom: 2px solid var(--green-200);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  white-space: nowrap;
+  color: var(--green-800);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.search {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1.5px solid var(--green-200);
+  border-radius: 6px;
+  outline: none;
+  background: var(--white);
+  color: var(--text);
+}
+
+.search:focus {
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px #4caf5033;
+}
+
+.result-count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px #2e7d3215;
+  border: 1px solid var(--border);
+}
+
+thead tr {
+  background: var(--green-700);
+  color: var(--white);
+}
+
+th {
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+th.sortable:hover {
+  background: var(--green-800);
+}
+
+.sort-indicator {
+  font-size: 0.75em;
+  opacity: 0.7;
+}
+
+td {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.9rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--green-100);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--green-50);
+}
+
+tbody tr:hover {
+  background: var(--green-100);
+}
+
+.name-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.item-thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.category-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+
+a {
+  color: var(--green-700);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  color: var(--green-800);
+  text-decoration: underline;
+}
+
+/* accordion only exists on mobile; hide on desktop */
+.col-desc-accordion { display: none; }
+
+@media (max-width: 600px) {
+  .app {
+    padding: 0 0 4rem;
+  }
+
+  .app-header {
+    padding: 0.75rem 0.75rem 0.6rem;
+  }
+
+  thead { display: none; }
+  .col-description { display: none; }
+  .col-desc-accordion { display: block; }
+
+  table, tbody, tr, td { display: block; width: 100%; }
+
+  tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "name    category"
+      "subs    link"
+      "accord  accord";
+    column-gap: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--green-100);
+    background: var(--white);
+  }
+
+  tbody tr:nth-child(even) {
+    background: var(--green-50);
+  }
+
+  tr:last-child { border-bottom: none; }
+
+  .col-name           { grid-area: name; align-self: center; border: none; padding: 0; }
+  .col-category       { grid-area: category; align-self: center; border: none; padding: 0; }
+  .col-subcategories  { grid-area: subs; align-self: center; border: none; padding: 0; font-size: 0.8rem; color: var(--text-muted); }
+  .col-link           { grid-area: link; align-self: center; border: none; padding: 0; text-align: right; }
+  .col-desc-accordion { grid-area: accord; border: none; padding: 0.4rem 0 0; }
+
+  .accordion-toggle {
+    width: 100%;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .accordion-toggle.highlight {
+    border-color: var(--green-500);
+    color: var(--green-700);
+    background: var(--green-50);
+  }
+
+  .accordion-toggle.open {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: transparent;
+  }
+
+  .accordion-body {
+    margin: 0;
+    padding: 0.5rem 0.6rem;
+    font-size: 0.82rem;
+    color: var(--text);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    line-height: 1.4;
+  }
+
+  table {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+.loader-sentinel {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.app-footer {
+  margin-top: 2rem;
+  padding: 0.75rem 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+}
