@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/pokopedia-favorites/static/css/main.58c814bb.css",
+    "main.js": "/pokopedia-favorites/static/js/main.cf97abff.js",
+    "static/media/decoration.png": "/pokopedia-favorites/static/media/decoration.861bc1dddc85338b2287.png",
+    "index.html": "/pokopedia-favorites/index.html",
+    "main.58c814bb.css.map": "/pokopedia-favorites/static/css/main.58c814bb.css.map",
+    "main.cf97abff.js.map": "/pokopedia-favorites/static/js/main.cf97abff.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.58c814bb.css",
+    "static/js/main.cf97abff.js"
+  ]
+}
